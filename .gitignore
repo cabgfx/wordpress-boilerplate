@@ -37,3 +37,4 @@ wp-content/themes/*
 # Other misc. files
 
 !config/
+config/environments/development.php
