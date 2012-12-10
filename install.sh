@@ -30,11 +30,11 @@ rm wp-config-sample.php
 
 # Now, setup WP with a sane development environment
 # First, get the latest package, and clean up when done
-curl https://github.com/cabgfx/wordpress_config/zipball/master -L -o master.zip
+curl https://github.com/cabgfx/wpbp-config/zipball/master -L -o master.zip
 unzip master.zip
 rm master.zip
-mv cabgfx-wordpress_config*/* cabgfx-wordpress_config*/.[^.]* .
-rm -rf cabgfx-wordpress_config*/
+mv cabgfx-wpbp-config*/* cabgfx-wpbp-config*/.[^.]* .
+rm -rf wpbp-config*/
 
 # Get salted keys for WordPress backend, fresh from the source
 curl https://api.wordpress.org/secret-key/1.1/salt/ -o salt &&
