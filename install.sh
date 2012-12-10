@@ -41,4 +41,7 @@ curl https://api.wordpress.org/secret-key/1.1/salt/ -o salt &&
 sed -i  '' -e "/define('DB_COLLATE/r salt" wp-config.php
 rm salt
 
+# Setup .gitignore
+mv gitignore-template .gitignore
+
 # Done. Now install your theme, etc. and enjoy local WordPress development without pains.
