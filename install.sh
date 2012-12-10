@@ -34,7 +34,7 @@ curl https://github.com/cabgfx/wpbp-config/zipball/master -L -o master.zip
 unzip master.zip
 rm master.zip
 mv cabgfx-wpbp-config*/* cabgfx-wpbp-config*/.[^.]* .
-rm -rf wpbp-config*/
+rm -rf cabgfx-wpbp-config*/
 
 # Get salted keys for WordPress backend, fresh from the source
 curl https://api.wordpress.org/secret-key/1.1/salt/ -o salt &&
