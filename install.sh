@@ -15,7 +15,7 @@ if [ "$(uname -s)" != "Darwin" ]; then
   exit 1
 fi
 
-echo "*** Installing WordPress..."
+echo "*** Fetching latest WordPress..."
 
 # Get latest, stable WordPress package
 curl -o wordpress.zip http://wordpress.org/latest.zip
@@ -28,6 +28,8 @@ rm -rf wordpress/
 rm wordpress.zip
 rm wp-config-sample.php
 
+echo "*** Configuring WP for local development..."
+
 # Now, setup WP with a sane development environment
 # First, get the latest package, and clean up when done
 curl https://github.com/cabgfx/wpbp-config/zipball/master -L -o master.zip
@@ -36,12 +38,18 @@ rm master.zip
 mv cabgfx-wpbp-config*/* cabgfx-wpbp-config*/.[^.]* .
 rm -rf cabgfx-wpbp-config*/
 
+echo "*** Installing secret keys for WP backend..."
+
 # Get salted keys for WordPress backend, fresh from the source
 curl https://api.wordpress.org/secret-key/1.1/salt/ -o salt &&
 sed -i  '' -e "/define('DB_COLLATE/r salt" wp-config.php
 rm salt
 
+echo "*** Installing .gitignore defaults..."
+
 # Setup .gitignore
 mv gitignore-template .gitignore
+
+echo "*** All done. Happy hacking!"
 
 # Done. Now install your theme, etc. and enjoy local WordPress development without pains.
