@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
+if ($_SERVER['REMOTE_ADDR']=='127.0.0.1' || $_SERVER['REMOTE_ADDR']=='10.211.55.3') {
     require_once 'environments/development.php';
 } else {
     require_once 'environments/production.php';
