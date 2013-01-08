@@ -60,13 +60,13 @@ Using WPBP, you (and your team) can develop locally on `localhost` or anything e
 It's common to restore a database on each of your various (test-)environments, eg. local, staging etc.
 However, [WordPress serves pages with embedded absolute URLs based on the absolute site URL configured in your database] [docs], which is not ideal.
 Normally, you'd have to manually update two options in the DB on each environment to set the correct hostname.
-WPBP eliminates this by overriding `WP_SITEURL` and `WP_HOME`.
+
+**WPBP eliminates this by overriding `WP_SITEURL` and `WP_HOME`.**
 
 [docs]: http://codex.wordpress.org/Running_a_Development_Copy_of_WordPress
 
 ##### A note about production
-`config/environments/production.php` is by default set up to not override the constants, deriving the URL straight from the database. If this is not what you want, you can easily do it yourself — just check development.php, for instance.
-
+`config/environments/production.php` is by default set up to not override the constants, deriving the URL straight from the database. If this is not what you want, you can easily do it yourself — just check `development.php`, for instance.
 
 ## Automatic configuration of `wp-config.php`
 
@@ -97,6 +97,7 @@ Initially, two environments are setup for you - development and production. Let'
 1. Duplicate an existing environment file and rename it to something else, eg. `staging.php`.
 2. Update `staging.php` with your details.
 3. Update `config/bootstrap.php` to load the staging config, given a certain condition (typically just a specific domain):
+
 ```php
 <?php
 // Development
