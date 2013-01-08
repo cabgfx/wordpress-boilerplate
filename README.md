@@ -44,7 +44,7 @@ $WP_ENVIRONMENT = array(
   'db_host' => 'localhost',
   'wp_lang' => 'da_DK', // You must add language files yourself.
   'wp_debug' => true,
-  'name' => 'development' // Can be used to easily check your current environment, see note below about environment-specific stuff.
+  'name' => 'development' // Used to check current environment, see note below about environment-specific stuff.
 );
 ?>
 ```
@@ -55,13 +55,14 @@ If you already have a WordPress install, and just need to add support for multip
 
 ## Work with multiple environments
 
-[WordPress serves pages with embedded absolute URLs based on the absolute site URL configured in your database] [docs], which is not ideal when you work with multiple environments, eg. development > staging > production or multiple people working on the same codebase.
+Using WPBP, you (and your team) can develop locally on `localhost` or anything else, and deploy the same codebase to `staging.yoursite.com`.
+
+It's common to restore a database on each of your various (test-)environments, eg. local, staging etc.
+However, [WordPress serves pages with embedded absolute URLs based on the absolute site URL configured in your database] [docs], which is not ideal.
+Normally, you'd have to manually update two options in the DB on each environment to set the correct hostname.
+WPBP eliminates this by overriding `WP_SITEURL` and `WP_HOME`.
 
 [docs]: http://codex.wordpress.org/Running_a_Development_Copy_of_WordPress
-
-Using WPBP, you (and your team) can develop locally on `localhost` or anything else, and easily deploy the same codebase to `staging.yoursite.com`, without hassle.
-
-It's common to restore a database with dummy content on each of your various environments, eg. local, staging etc. Normally, you'd have to manually update two options in the DB, to set the correct hostname for your current environment. WPBP eliminates this, by overriding the constants that are set from these options in the DB - specifically, `WP_SITEURL` and `WP_HOME`.
 
 ##### A note about production
 `config/environments/production.php` is by default set up to not override the constants, deriving the URL straight from the database. If this is not what you want, you can easily do it yourself — just check development.php, for instance.
