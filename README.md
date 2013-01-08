@@ -68,29 +68,6 @@ Normally, you'd have to manually update two options in the DB on each environmen
 ##### A note about production
 `config/environments/production.php` is by default set up to not override the constants, deriving the URL straight from the database. If this is not what you want, you can easily do it yourself — just check `development.php`, for instance.
 
-## Automatic configuration of `wp-config.php`
-
-Installing new WP sites requires you to rename `wp-config-sample.php` and get a fresh set of security keys for the WP backend. WPBP handles that for you, automatically renaming the file and inserting a fresh set of keys, straight from [the online generator][gen]. Neat, huh?
-
-[gen]: https://api.wordpress.org/secret-key/1.1/salt/
-
-## Git-ready
-
-A template `.gitignore` is also provided for you, so you don't have to manually ignore the core WP files. You just need to add your own themes/plugins etc., as you create them.
-
-## A helper for environment-specific stuff
-
-WPBP defines an additional constant, `WPBP_ENV`, which enables you to easily check what environment you're running in.
-
-Example:
-I usually don't want to include the Google Analytics script when I work locally, so here's what I do:
-
-```php
-<?php if (WPBP_ENV == 'production'): ?>
-  <script> … </script>
-<?php endif; ?>
-```
-
 ## Adding more environments
 Initially, two environments are setup for you - development and production. Let's say you want to add a staging environment:
 
@@ -114,3 +91,26 @@ if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
 }
 ?>
 ```
+
+## A helper for environment-specific stuff
+
+WPBP defines an additional constant, `WPBP_ENV`, which enables you to easily check what environment you're running in.
+
+Example:
+I usually don't want to include the Google Analytics script when I work locally, so here's what I do:
+
+```php
+<?php if (WPBP_ENV == 'production'): ?>
+  <script> … </script>
+<?php endif; ?>
+```
+
+## Automatic configuration of `wp-config.php`
+
+Installing new WP sites requires you to rename `wp-config-sample.php` and get a fresh set of security keys for the WP backend. WPBP handles that for you, automatically renaming the file and inserting a fresh set of keys, straight from [the online generator][gen]. Neat, huh?
+
+[gen]: https://api.wordpress.org/secret-key/1.1/salt/
+
+## Git-ready
+
+A template `.gitignore` is also provided for you, so you don't have to manually ignore the core WP files. You just need to add your own themes/plugins etc., as you create them.
