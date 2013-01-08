@@ -6,7 +6,7 @@
 # 
 # Then, `cd` into this newly created directory
 #
-# `wpsetup` and watch magic unfold before you.
+# `curl -L get.wbp.io | sh` and watch magic unfold before you.
 
 # Exit if we're not on OS X
 
