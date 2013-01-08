@@ -15,41 +15,67 @@ if [ "$(uname -s)" != "Darwin" ]; then
   exit 1
 fi
 
-echo "*** Fetching latest WordPress..."
+echo "
+
+*** Fetching latest WordPress... (hang on)"
 
 # Get latest, stable WordPress package
-curl -o wordpress.zip http://wordpress.org/latest.zip
+curl -#o wordpress.zip http://wordpress.org/latest.zip
+
+echo "
+
+*** Unpacking WP..."
 
 # Unzip the package and clean up files we don't need, including OSX-related cruft
-unzip wordpress.zip
+unzip -q wordpress.zip
 mv wordpress/* .
+
+echo "
+
+*** Cleaning up..."
+
 rm -rf __MACOSX
 rm -rf wordpress/
 rm wordpress.zip
 rm wp-config-sample.php
 
-echo "*** Configuring WP for local development..."
+echo "
+
+*** Configuring WP for local development..."
 
 # Now, setup WP with a sane development environment
 # First, get the latest package, and clean up when done
-curl https://github.com/cabgfx/wpbp-config/zipball/master -L -o master.zip
-unzip master.zip
+curl -#Lo master.zip https://github.com/cabgfx/wpbp-config/zipball/master
+unzip -q master.zip
 rm master.zip
 mv cabgfx-wpbp-config*/* cabgfx-wpbp-config*/.[^.]* .
 rm -rf cabgfx-wpbp-config*/
+mv config/environments/development-sample.php config/environments/development.php
 
-echo "*** Installing secret keys for WP backend..."
+echo "
+
+*** Installing secret keys for WP backend..."
 
 # Get salted keys for WordPress backend, fresh from the source
-curl https://api.wordpress.org/secret-key/1.1/salt/ -o salt &&
+curl -#o salt https://api.wordpress.org/secret-key/1.1/salt/
 sed -i  '' -e "/define('DB_COLLATE/r salt" wp-config.php
 rm salt
 
-echo "*** Installing .gitignore defaults..."
+echo "
+
+*** Setting up .gitignore template..."
 
 # Setup .gitignore
 mv gitignore-template .gitignore
 
-echo "*** All done. Happy hacking!"
+echo "
+
+*** All done!
+
+Add your details to config/environments/development.php and you're done.
+Thanks,
+Casper.
+
+"
 
 # Done. Now install your theme, etc. and enjoy local WordPress development without pains.
