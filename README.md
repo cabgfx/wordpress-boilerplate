@@ -25,7 +25,7 @@ mkdir my-new-site && cd my-new-site
 Install all components of WPBP (Might take a minute or two, depending on your internet connection).
 ```bash
 curl -L get.wbp.io | sh
-``
+```
 
 Note: get.wbp.io redirects to the latest stable version of the install script on github, hence the `-L` flag – here's the source: [cabgfx/wordpress-boilerplate/master/install.sh](https://raw.github.com/cabgfx/wordpress-boilerplate/master/install.sh)
 
@@ -63,7 +63,7 @@ Using WPBP, you (and your team) can develop locally on `localhost` or anything e
 
 It's common to restore a database with dummy content on each of your various environments, eg. local, staging etc. Normally, you'd have to manually update two options in the DB, to set the correct hostname for your current environment. WPBP eliminates this, by overriding the constants that are set from these options in the DB - specifically, `WP_SITEURL` and `WP_HOME`.
 
-**A note about production**
+##### A note about production
 `config/environments/production.php` is by default set up to not override the constants, deriving the URL straight from the database. If this is not what you want, you can easily do it yourself — just check development.php, for instance.
 
 
