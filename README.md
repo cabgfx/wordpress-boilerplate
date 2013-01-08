@@ -15,9 +15,9 @@ Maintained at [cabgfx/wpbp-theme][theme].
 [st]: https://github.com/viewportindustries/starkers
 [ro]: https://github.com/retlehs/roots
 
-## Set up a new WP site
+## Set up a new site
 
-Create a new directory for your site and open it
+Create a directory for your site and open it
 ```bash
 mkdir my-new-site && cd my-new-site
 ```
@@ -49,48 +49,19 @@ $WP_ENVIRONMENT = array(
 ?>
 ```
 
+## Caveats
+
+* This is for single WP installs, so there's currently no Multisite support.
+* Mac OS X only. Contributions to add more platforms are welcome, but I have no intentions to make them myself.
+
 ## Use the tools on existing sites
 
 If you already have a WordPress install, and just need to add support for multiple environments, you only need the wpbp-config package. See the repository at [cabgfx.com/wpbp-config][conf] for details.
 
-## Work with multiple environments
+## Support for working with multiple environments
 
 Using WPBP, you (and your team) can develop locally on `localhost` or anything else, and deploy the same codebase to `staging.yoursite.com`.
-
-It's common to restore a database on each of your various (test-)environments, eg. local, staging etc.
-However, [WordPress serves pages with embedded absolute URLs based on the absolute site URL configured in your database] [docs], which is not ideal.
-Normally, you'd have to manually update two options in the DB on each environment to set the correct hostname.
-
-**WPBP eliminates this by overriding `WP_SITEURL` and `WP_HOME`.**
-
-[docs]: http://codex.wordpress.org/Running_a_Development_Copy_of_WordPress
-
-##### A note about production
-`config/environments/production.php` is by default set up to not override the constants, deriving the URL straight from the database. If this is not what you want, you can easily do it yourself — just check `development.php`, for instance.
-
-## Adding more environments
-Initially, two environments are setup for you - development and production. Let's say you want to add a staging environment:
-
-1. Duplicate an existing environment file and rename it to something else, eg. `staging.php`.
-2. Update `staging.php` with your details.
-3. Update `config/bootstrap.php` to load the staging config, given a certain condition (typically just a specific domain):
-
-```php
-<?php
-// Development
-if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
-  require_once 'environments/development.php';
-
-// Staging
-} elseif ($_SERVER['REMOTE_ADDR']=='X.X.X.X') {
-  require_once 'environments/staging.php';
-
-// Production
-} else {
-  require_once 'environments/production.php';
-}
-?>
-```
+Additional details can be found in the [wpbp-config repo][conf].
 
 ## A helper for environment-specific stuff
 
