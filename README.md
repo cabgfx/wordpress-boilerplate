@@ -8,42 +8,46 @@ WPBP consists of three distinct components:
 * Simple tools to enable easy portability between different environments, eg. development, staging, production.
 Maintained at [cabgfx/wpbp-config][conf].
 * **STILL IN THE WORKS** A basic starter theme, with a narrow focus on template organization and utility functions, **not** markup and styling. (A cross-breed of [Starkers][st] and [Roots][ro]).
-Maintained at [cabgfx/wpbp-config][theme].
+Maintained at [cabgfx/wpbp-theme][theme].
 
 [conf]: https://github.com/cabgfx/wpbp-config
 [theme]: https://github.com/cabgfx/wpbp-theme
 [st]: https://github.com/viewportindustries/starkers
 [ro]: https://github.com/retlehs/roots
 
-This project decouples the user-supplied parts of WordPress configuration from the defaults in `wp-config.php`, allowing for easily portable WP installations.
-
 ## Set up a new WP site
 
 Create a new directory for your site and open it
-    mkdir my-new-site && cd my-new-site
+```bash
+mkdir my-new-site && cd my-new-site
+```
 
-Install all three components of WPBP (Might take a minute or two, depending on your internet connection).
-    curl -L get.wbp.io | sh
+Install all components of WPBP (Might take a minute or two, depending on your internet connection).
+```bash
+curl -L get.wbp.io | sh
+``
 
 Note: get.wbp.io redirects to the latest stable version of the install script on github, hence the `-L` flag – here's the source: [cabgfx/wordpress-boilerplate/master/install.sh](https://raw.github.com/cabgfx/wordpress-boilerplate/master/install.sh)
 
 Finally, add your environment details. Here's an example from my development setup:
 
 ```php
-    <?php
-    // config/environments/development.php
-    …
+<?php
+// config/environments/development.php
 
-    $WP_ENVIRONMENT = array(
-     'db_name' => 'my_dummy_db',
-     'db_user' => 'root',
-     'db_password' => 's00pAzeekret',
-     'db_host' => 'localhost',
-     'wp_lang' => 'da_DK', // You must add language files yourself.
-     'wp_debug' => true,
-     'name' => 'development' // Can be used to easily check your current environment, see note below about environment-specific stuff.
-    );
-    ?>
+...
+
+$WP_ENVIRONMENT = array(
+  'db_name' => 'my_dummy_db',
+  'db_user' => 'root',
+  'db_password' => 's00pAzeekret',
+  'db_host' => 'localhost',
+  'wp_lang' => 'da_DK', // You must add language files yourself.
+  'wp_debug' => true,
+  'name' => 'development' // Can be used to easily check your current environment, see note below about environment-specific stuff.
+);
+?>
+```
 
 ## Use the tools on existing sites
 
@@ -81,9 +85,9 @@ Example:
 I usually don't want to include the Google Analytics script when I work locally, so here's what I do:
 
 ```php
-    <?php if (WPBP_ENV == 'production'): ?>
-      <script> … </script>
-    <?php endif; ?>
+<?php if (WPBP_ENV == 'production'): ?>
+  <script> … </script>
+<?php endif; ?>
 ```
 
 ## Adding more environments
@@ -93,13 +97,18 @@ Initially, two environments are setup for you - development and production. Let'
 2. Update `staging.php` with your details.
 3. Update `config/bootstrap.php` to load the staging config, given a certain condition (typically just a specific domain):
 ```php
-    <?php
-    if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
-      require_once 'environments/development.php';
-    } elseif ($_SERVER['REMOTE_ADDR']=='X.X.X.X') {
-      require_once 'environments/staging.php';
-    } else {
-      require_once 'environments/production.php';
-    }
-    ?>
+<?php
+// Development
+if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
+  require_once 'environments/development.php';
+
+// Staging
+} elseif ($_SERVER['REMOTE_ADDR']=='X.X.X.X') {
+  require_once 'environments/staging.php';
+
+// Production
+} else {
+  require_once 'environments/production.php';
+}
+?>
 ```
