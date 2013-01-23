@@ -90,7 +90,7 @@ $WP_ENVIRONMENT = array(
   'db_host' => 'localhost',
   'wp_lang' => 'da_DK', // You must add language files yourself.
   'wp_debug' => true,
-  'name' => 'development' // Used to check current environment, see note below about environment-specific stuff.
+  'name' => 'development' // Used to check current environment, see note about environment-specific stuff.
 );
 ?>
 ```
