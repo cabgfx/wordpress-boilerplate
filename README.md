@@ -1,19 +1,65 @@
-# WordPress Boilerplate - WPBP
+# WordPress Boilerplate
 
-WPBP simplifies the process of setting up, and working with, WordPress, taking care of tedious grunt work so you can hit the ground running.
+WPBP is a set of small tools to simplify setting up and working with WordPress.
 
-WPBP consists of three distinct components:
+## What's included
 
-* A script to setup a new WP install from the latest, stable WordPress package, automagically configured for you, including the following:
-* Simple tools to enable easy portability between different environments, eg. development, staging, production.
-Maintained at [cabgfx/wpbp-config][conf].
-* **STILL IN THE WORKS** A basic starter theme, with a narrow focus on template organization and utility functions, **not** markup and styling. (A cross-breed of [Starkers][st] and [Roots][ro]).
-Maintained at [cabgfx/wpbp-theme][theme].
+**Installation script for new sites**
+
+A script to download and configure WP, automatically setting up keys for the WP backend, Git revision control and utilities to work with multiple environments.
+The script is maintained in this project, but you run it from [http://get.wpbp.io/](). Further instructions below.
+
+**Configuration files for new and existing sites**
+
+Abstractions to the base WP configuration in `wp-config.php`, enabling the use of multiple environments for easier team collaboration and code portability (think development > staging > production), independent of database configuration.
+Maintained at [cabgfx/wpbp-config][conf]
+
+**Starter theme (IN PROGRESS)**
+
+A basic starter theme, with a narrow focus on template organization and utility functions, **not** markup and styling. (A cross-breed of [Starkers][st] and [Roots][ro]).
+Maintained at [cabgfx/wpbp-theme][theme]
 
 [conf]: https://github.com/cabgfx/wpbp-config
 [theme]: https://github.com/cabgfx/wpbp-theme
 [st]: https://github.com/viewportindustries/starkers
 [ro]: https://github.com/retlehs/roots
+
+## Why should I use this?
+
+Using these tools to set up new WP sites gives you:
+
+**Automatic configuration of `wp-config.php`**
+
+Installing new WP sites requires you to rename `wp-config-sample.php` and get a fresh set of security keys for the WP backend. WPBP handles that for you, automatically renaming the file and inserting a fresh set of keys, straight from [the online generator][gen]. Neat, huh?
+
+[gen]: https://api.wordpress.org/secret-key/1.1/salt/
+
+**Multiple environments**
+
+Using WPBP, you (and your team) can develop locally on `localhost`, and deploy the same codebase to other locations, eg. `www.yoursite.com`, which is notoriously cumbersome, because of how WP sets up the hostname in the database. Additional details can be found in the [wpbp-config repo][conf].
+
+**A helper for environment-specific stuff**
+
+WPBP defines an additional constant, `WPBP_ENV`, which enables you to easily check what environment you're running in.
+
+Example:
+I usually don't want to include the Google Analytics script when I work locally, so here's what I do:
+
+```php
+<?php if (WPBP_ENV == 'production'): ?>
+  <script> … </script>
+<?php endif; ?>
+```
+
+**Git-ready project setup**
+
+A template `.gitignore` is provided for you, so you don't have to manually ignore the core WP files. You just need to add your own themes/plugins etc., as you create them.
+
+## Caveats
+
+* This is for single WP installs, so there's currently no Multisite support.
+* Mac OS X only. Contributions to add more platforms are welcome, but I have no intentions to make them myself.
+
 
 ## Set up a new site
 
@@ -49,39 +95,8 @@ $WP_ENVIRONMENT = array(
 ?>
 ```
 
-## Caveats
-
-* This is for single WP installs, so there's currently no Multisite support.
-* Mac OS X only. Contributions to add more platforms are welcome, but I have no intentions to make them myself.
-
 ## Use the tools on existing sites
 
 If you already have a WordPress install, and just need to add support for multiple environments, you only need the wpbp-config package. See the repository at [cabgfx.com/wpbp-config][conf] for details.
 
-## Support for working with multiple environments
 
-Using WPBP, you (and your team) can develop locally on `localhost` or anything else, and deploy the same codebase to `staging.yoursite.com`.
-Additional details can be found in the [wpbp-config repo][conf].
-
-## A helper for environment-specific stuff
-
-WPBP defines an additional constant, `WPBP_ENV`, which enables you to easily check what environment you're running in.
-
-Example:
-I usually don't want to include the Google Analytics script when I work locally, so here's what I do:
-
-```php
-<?php if (WPBP_ENV == 'production'): ?>
-  <script> … </script>
-<?php endif; ?>
-```
-
-## Automatic configuration of `wp-config.php`
-
-Installing new WP sites requires you to rename `wp-config-sample.php` and get a fresh set of security keys for the WP backend. WPBP handles that for you, automatically renaming the file and inserting a fresh set of keys, straight from [the online generator][gen]. Neat, huh?
-
-[gen]: https://api.wordpress.org/secret-key/1.1/salt/
-
-## Git-ready
-
-A template `.gitignore` is also provided for you, so you don't have to manually ignore the core WP files. You just need to add your own themes/plugins etc., as you create them.
