@@ -97,6 +97,6 @@ $WP_ENVIRONMENT = array(
 
 ## Use the tools on existing sites
 
-If you already have a WordPress install, and just need to add support for multiple environments, you only need the wpbp-config package. See the repository at [cabgfx.com/wpbp-config][conf] for details.
+If you already have a WordPress install, and just need to add support for multiple environments, you only need the wpbp-config package. See the repository at [cabgfx/wpbp-config][conf] for details.
 
 
