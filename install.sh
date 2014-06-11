@@ -72,7 +72,7 @@ echo "
 
 *** All done!
 
-Add your details to config/environments/development.php and you're done.
+Add your details to config/environments/development.php and you're all set.
 Thanks,
 Casper.
 
