@@ -55,7 +55,7 @@ A template `.gitignore` is provided for you, so you don't have to manually ignor
 
 ## Caveats
 
-* This is for single WP installs, so there's currently no Multisite support.
+* Multisite support is not included by default, but you can add it manually. [More info in this wiki entry](https://github.com/cabgfx/wordpress-boilerplate/wiki/Multisite-support).
 * Mac OS X only. Contributions to add more platforms are welcome, but I have no intentions to make them myself.
 
 
