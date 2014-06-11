@@ -11,18 +11,16 @@ The script is maintained in this project, but you run it from [http://get.wpbp.i
 
 **Configuration files for new and existing sites**
 
-Abstractions to the base WP configuration in `wp-config.php`, enabling the use of multiple environments for easier team collaboration and code portability (think development > staging > production), independent of database configuration.
-Maintained at [cabgfx/wpbp-config][conf]
+Abstractions to the base WP configuration in `wp-config.php`, enabling the use of multiple environments for easier team collaboration and code portability (think development > staging > production), independent of database configuration. Maintained at [cabgfx/wpbp-config][conf]
 
-**Starter theme (IN PROGRESS)**
+**Starter theme**
 
-A basic starter theme, with a narrow focus on template organization and utility functions, **not** markup and styling. (A cross-breed of [Starkers][st] and [Roots][ro]).
-Maintained at [cabgfx/wpbp-theme][theme]
+A slightly simplified version of [Roots][ro], a starter theme based on HTML5 Boilerplate & Twitter Bootstrap. Maintained at [cabgfx/wpbp-theme][theme]
 
 [conf]: https://github.com/cabgfx/wpbp-config
 [theme]: https://github.com/cabgfx/wpbp-theme
 [st]: https://github.com/viewportindustries/starkers
-[ro]: https://github.com/retlehs/roots
+[ro]: http://roots.io/
 
 ## Why should I use this?
 
