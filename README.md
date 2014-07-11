@@ -18,7 +18,7 @@ Abstractions to the base WP configuration in `wp-config.php`, enabling the use o
 
 **Starter theme**
 
-A slightly simplified version of [Roots][ro], a starter theme based on HTML5 Boilerplate & Twitter Bootstrap. Maintained at [cabgfx/wpbp-theme][theme]
+A slightly simplified version of [Roots][ro], a starter theme based on HTML5 Boilerplate & Twitter Bootstrap. Maintained at [cabgfx/wpbp-theme][theme] _Note that the theme isn't included in the install script (yet)._
 
 [conf]: https://github.com/cabgfx/wpbp-config
 [theme]: https://github.com/cabgfx/wpbp-theme
