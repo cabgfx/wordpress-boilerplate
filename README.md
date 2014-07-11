@@ -1,8 +1,11 @@
 # WordPress Boilerplate
 
-WPBP is a set of small tools to simplify setting up and working with WordPress.
   
+WPBP is a set of small, simple tools for local WordPress development on a Mac. It installs and automagically configures the latest, stable WP release, straight off wordpress.org. Add your database info, and you're ready to serve up the site on any hostname, independent of environment and database.
+
+
 Here's how it works:
+
 ![Alt text](https://s3-eu-west-1.amazonaws.com/wordpress-boilerplate/wpbp-install-demo.gif "Animated GIF showing the install procedure on the command line")
 
 ## What's included
