@@ -20,7 +20,7 @@ echo "
 *** Fetching latest WordPress... (hang on)"
 
 # Get latest, stable WordPress package
-curl -#o wordpress.zip http://wordpress.org/latest.zip
+curl -#Lo wordpress.zip http://wordpress.org/latest.zip
 
 echo "
 
