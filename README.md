@@ -8,6 +8,8 @@ Here's how it works:
 
 ![Alt text](https://s3-eu-west-1.amazonaws.com/wordpress-boilerplate/wpbp-install-demo.gif "Animated GIF showing the install procedure on the command line")
 
+(note the url for install has changed, see “Set up a new site” below.)
+
 ## What's included
 
 **Installation script for new sites**
