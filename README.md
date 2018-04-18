@@ -21,7 +21,7 @@ Abstractions to the base WP configuration in `wp-config.php`, enabling the use o
 
 **Starter theme**
 
-A slightly simplified version of [Roots][ro], a starter theme based on HTML5 Boilerplate & Twitter Bootstrap. Maintained at [cabgfx/wpbp-theme][theme] _Note that the theme isn't included in the install script (yet)._
+Maintained at [cabgfx/wpbp-theme][theme] _Note that the theme isn't included in the install script (yet)._
 
 [conf]: https://github.com/cabgfx/wpbp-config
 [theme]: https://github.com/cabgfx/wpbp-theme
@@ -74,7 +74,7 @@ mkdir my-new-site && cd my-new-site
 
 Install all components of WPBP (Might take a minute or two, depending on your internet connection).
 ```bash
-curl -L get.wbp.io | sh
+curl -L https://raw.githubusercontent.com/cabgfx/wordpress-boilerplate/master/install.sh | sh
 ```
 
 Note: get.wbp.io redirects to the latest stable version of the install script on github, hence the `-L` flag – here's the source: [cabgfx/wordpress-boilerplate/master/install.sh](https://raw.github.com/cabgfx/wordpress-boilerplate/master/install.sh)
