@@ -8,14 +8,47 @@ Here's how it works:
 
 ![Alt text](https://s3-eu-west-1.amazonaws.com/wordpress-boilerplate/wpbp-install-demo.gif "Animated GIF showing the install procedure on the command line")
 
-(note the url for install has changed, see “Set up a new site” below.)
+(note the url for install has changed, see “How to install” below.)
+
+## How to install
+
+Create a directory for your site and open it
+```bash
+mkdir my-new-site && cd my-new-site
+```
+
+Install all components of WPBP (Might take a minute or two, depending on your internet connection).
+```bash
+curl -L https://raw.githubusercontent.com/cabgfx/wordpress-boilerplate/master/install.sh | sh
+```
+
+Note: get.wbp.io redirects to the latest stable version of the install script on github, hence the `-L` flag – here's the source: [cabgfx/wordpress-boilerplate/master/install.sh](https://raw.github.com/cabgfx/wordpress-boilerplate/master/install.sh)
+
+Finally, add your environment details. Here's an example from my development setup:
+
+```php
+<?php
+// config/environments/development.php
+
+...
+
+$WP_ENVIRONMENT = array(
+  'db_name' => 'my_dummy_db',
+  'db_user' => 'root',
+  'db_password' => 's00pAzeekret',
+  'db_host' => 'localhost',
+  'wp_lang' => 'da_DK', // You must add language files yourself.
+  'wp_debug' => true,
+  'name' => 'development' // Used to check current environment, see note about environment-specific stuff.
+);
+?>
+```
 
 ## What's included
 
 **Installation script for new sites**
 
-A script to download and configure WP, automatically setting up keys for the WP backend, Git revision control and utilities to work with multiple environments.
-The script is maintained in this project, but you run it from [http://get.wpbp.io/](). Further instructions below.
+A script to download and configure WP, automatically setting up keys for the WP backend, Git revision control and utilities to work with multiple environments. The script is maintained in this project, but you run it from the terminal by CURL'ing the install script from GitHub. See “How to install” for full instructions.
 
 **Configuration files for new and existing sites**
 
@@ -66,43 +99,6 @@ A template `.gitignore` is provided for you, so you don't have to manually ignor
 * Multisite support is not included by default, but you can add it manually. [More info in this wiki entry](https://github.com/cabgfx/wordpress-boilerplate/wiki/Multisite-support).
 * Mac OS X only. Contributions to add more platforms are welcome, but I have no intentions to make them myself.
 
-
-## Set up a new site
-
-Create a directory for your site and open it
-```bash
-mkdir my-new-site && cd my-new-site
-```
-
-Install all components of WPBP (Might take a minute or two, depending on your internet connection).
-```bash
-curl -L https://raw.githubusercontent.com/cabgfx/wordpress-boilerplate/master/install.sh | sh
-```
-
-Note: get.wbp.io redirects to the latest stable version of the install script on github, hence the `-L` flag – here's the source: [cabgfx/wordpress-boilerplate/master/install.sh](https://raw.github.com/cabgfx/wordpress-boilerplate/master/install.sh)
-
-Finally, add your environment details. Here's an example from my development setup:
-
-```php
-<?php
-// config/environments/development.php
-
-...
-
-$WP_ENVIRONMENT = array(
-  'db_name' => 'my_dummy_db',
-  'db_user' => 'root',
-  'db_password' => 's00pAzeekret',
-  'db_host' => 'localhost',
-  'wp_lang' => 'da_DK', // You must add language files yourself.
-  'wp_debug' => true,
-  'name' => 'development' // Used to check current environment, see note about environment-specific stuff.
-);
-?>
-```
-
-## Use the tools on existing sites
+## Using these tools on pre-existing sites
 
 If you already have a WordPress install, and just need to add support for multiple environments, you only need the wpbp-config package. See the repository at [cabgfx/wpbp-config][conf] for details.
-
-
